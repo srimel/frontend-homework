@@ -9,8 +9,7 @@ function handleInput(e) {
     result.textContent = '';
   } else if (isNegative(inputNumberStr)) {
     result.style.color = 'red';
-    result.textContent =
-      'Invalid Input Error: only numeric characters permitted. No negative number allowed.';
+    result.textContent = 'Invalid Input Error: Only positive numbers allowed.';
   } else if (isPalindrome(inputNumberStr)) {
     result.style.color = 'green';
     result.textContent = 'Yes. This is a palindrome!';
@@ -26,5 +25,5 @@ function isPalindrome(inputNumberStr) {
 }
 
 function isNegative(inputNumberStr) {
-  return inputNumberStr.includes('-');
+  return inputNumberStr.startsWith('-');
 }
