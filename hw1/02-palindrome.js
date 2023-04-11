@@ -7,7 +7,7 @@ function handleInput(e) {
   const inputNumberStr = e.target.value;
   if (inputNumberStr.length < 1) {
     result.textContent = '';
-  } else if (isNegative(inputNumberStr)) {
+  } else if (isBadInput(inputNumberStr)) {
     result.style.color = 'red';
     result.textContent = 'Invalid Input Error: Only positive numbers allowed.';
   } else if (isPalindrome(inputNumberStr)) {
@@ -24,6 +24,6 @@ function isPalindrome(inputNumberStr) {
   return inputNumberStr === reverseNumberStr;
 }
 
-function isNegative(inputNumberStr) {
-  return inputNumberStr.startsWith('-');
+function isBadInput(inputNumberStr) {
+  return !/^[0-9.]*$/.test(inputNumberStr);
 }
