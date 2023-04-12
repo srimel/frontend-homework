@@ -15,7 +15,7 @@
 13. bento ~ pickle
 14. plate > apple
 15. plate > orange:first-child
-16. plate apple:only-child, plate pickle:only-child
+16. plate *:only-child
 17. apple:last-child, pickle:last-child
 18. plate:nth-child(3)
 19. bento:nth-last-child(3)
