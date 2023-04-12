@@ -4,7 +4,7 @@
 2. bento
 3. #fancy
 4. plate apple
-5. #fancy pickel
+5. #fancy pickle
 6. .small
 7. orange.small
 8. bento orange.small
@@ -16,7 +16,7 @@
 14. plate > apple
 15. plate > orange:first-child
 16. plate *:only-child
-17. apple:last-child, pickle:last-child
+17. .small:last-child
 18. plate:nth-child(3)
 19. bento:nth-last-child(3)
 20. apple:first-of-type
