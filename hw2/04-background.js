@@ -20,7 +20,6 @@ const setRandomBackgroundColor = function setRandomBackgroundColor() {
 const handlePageLoad = function handlePageLoad(event) {
   setRandomBackgroundColor();
   buttonElement.disabled = true;
-  console.log(`${bodyElement[0].style.backgroundColor}`);
 };
 
 const isValidInput = function isValidInput(input) {
@@ -51,10 +50,12 @@ const handleBackgroundCycle = function handleBackgroundCycle(event) {
   let action = event.target.value;
   transformButton(action);
   if (action == 'Start') {
-    intervalID = setInterval(setRandomBackgroundColor, interval);
+    intervalInputElement.disabled = true;
+    intervalID = setInterval(setRandomBackgroundColor, interval + '000');
   } else {
     clearInterval(intervalID);
     intervalID = null;
+    intervalInputElement.disabled = false;
   }
 };
 
