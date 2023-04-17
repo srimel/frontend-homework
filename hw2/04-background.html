@@ -11,18 +11,20 @@
   </head>
   <body>
     <main>
-      <h1>Exercise 04 - Background</h1>
-      <p>
-        The background color will change every few seconds (as indicated below).
-        You can stop this behavior and you can also change how often the
-        background color changes.
-      </p>
-      <div>
-        <label>Background change interval (seconds): </label>
-        <input />
-      </div>
-      <div>
-        <input />
+      <div class="card w-50 mx-auto p-3 mt-5">
+        <h1 class="mb-3">Exercise 04 - Background</h1>
+        <p>
+          The background color will change every few seconds (as indicated below).
+          You can stop this behavior and you can also change how often the
+          background color changes.
+        </p>
+        <div class="mb-3">
+          <label for="intervalInput">Background change interval (seconds): </label>
+          <input id="intervalInput" type="number"/>
+        </div>
+        <div>
+          <input id="input-btn" type="button" class="btn btn-primary" value="Start" />
+        </div>
       </div>
     </main>
   </body>
