@@ -12,16 +12,52 @@
   </head>
   <body class="bg-dark">
     <main>
-      <div class="card mx-auto w-50 p-3 mt-5">
+      <div class="card mx-auto mt-4 w-50 p-3">
         <form>
-          <h1 class="text-center">Exercise 05 - Form</h1>
-          <div>
-            <label for="">Full Name:</label>
-            <input type="text" id="" />
+          <h1 class="text-center mb-4">Exercise 05 - Form</h1>
+          <div class="mb-3">
+            <label class="form-label fw-bold" for="input-name">Full Name:</label>
+            <input class="form-control" type="text" id="input-name" />
           </div>
-          <div>
-            <label for="">Email:</label>
-            <input type="email" id="" />
+          <div class="mb-3">
+            <label class="form-label fw-bold" for="input-email">Email:</label>
+            <input class="form-control" type="email" id="input-email" />
+          </div>
+          <div class="mb-3">
+            <label class="form-label fw-bold" for="status-select">Registration Status:</label>
+            <select class="form-select" id="status-select">
+              <option>Choose an Option</option>
+              <option>Open</option>
+              <option>Closed</option>
+              <option>Waitlist</option>
+            </select>
+          </div>
+          <label for="check-boxes" class="form-label fw-bold">Have you taken any of the following courses?</label>
+          <div class="mb-3" id="check-boxes">
+            <div class="form-check">
+              <input type="checkbox" class="form-check-input" id="programming-languages"/>
+              <label for="programming-languages" class="form-check-label">Programming Languages</label>
+            </div>
+            <div class="form-check">
+              <input type="checkbox" class="form-check-input" id="operating-systems"/>
+              <label for="operating-systems" class="form-check-label">Operating Systems</label>
+            </div>
+            <div class="form-check">
+              <input type="checkbox" class="form-check-input" id="full-stack"/>
+              <label for="full-stack" class="form-check-label">Full Stack Web Development</label>
+            </div>
+          </div>
+          <div class="mb-4">
+            <label class="form-label fw-bold" for="text-area">Anything else?</label>
+            <textarea class="form-control" id="text-area" rows="4"></textarea>
+          </div>
+          <div class="row gx-1 mb-3">
+            <div class="col-sm-6">
+              <button type="submit" class="btn btn-primary w-100">Submit</button>
+            </div>
+            <div class="col-sm-6">
+              <button type="reset" class="btn btn-secondary w-100">Reset</button>
+            </div>
           </div>
         </form>
       </div>
