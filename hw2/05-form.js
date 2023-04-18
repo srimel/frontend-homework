@@ -1,26 +1,22 @@
 // Stuart Rimel
 
 const form = document.querySelector('form');
+
 form.addEventListener('submit', (event) => {
   event.preventDefault();
-  const name = event.target[0].value;
-  const email = event.target[1].value;
-  const status = event.target[2].value;
-  const programmingLang = event.target[4].checked;
-  const operatingSystems = event.target[5].checked;
-  const fullStack = event.target[6].checked;
-  const textArea = event.target[7].value;
+  const data = new FormData(event.target);
+  const progLang = data.get('programmingLang');
+  const opSys = data.get('operatingSystems');
+  const fullStack = data.get('fullStack');
   console.log(`FORM SUBMITTED!
     Details of submission:
-        name: ${name}
-        email: ${email}
-        registration status: ${status}
-        previous classes:
-            Programming Languages: ${programmingLang}
-            Operating Systems: ${operatingSystems}
-            Full Stack Web Development: ${fullStack}
-    Additional Comments: 
-        ${textArea}
-  `);
+        Name: ${data.get('name')}
+        Email: ${data.get('email')}
+        Registration Status: ${data.get('status')}
+        Previous Classes:`);
+  progLang ? console.log(`\t\tProgramming Languages`) : null;
+  opSys ? console.log(`\t\tOperating Systems`) : null;
+  fullStack ? console.log(`\t\tFull Stack Web Development`) : null;
+  console.log(`\tAdditional Comments: ${data.get('comments')}`);
   form.reset();
 });
