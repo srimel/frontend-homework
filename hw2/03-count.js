@@ -5,8 +5,9 @@ const textElement = document.getElementById('text');
 const originalInnerHTML = textElement.innerHTML;
 
 const highlight = function highlight(word, searchText) {
+  const wordPattern = new RegExp(`\\b${searchText}\\b`);
   return word.replace(
-    searchText,
+    wordPattern,
     `<span style="background-color: yellow">${searchText}</span>`
   );
 };
