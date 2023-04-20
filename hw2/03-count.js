@@ -13,11 +13,11 @@ const highlight = function highlight(word, searchText) {
 
 const findAndHighlight = function findAndHighlight(searchText) {
   const words = originalInnerHTML.split(' ');
-  for (i = 0; i < words.length; i++) {
-    if (words[i].includes(searchText)) {
-      words[i] = highlight(words[i], searchText);
+  words.forEach((word, index) => {
+    if (word.includes(searchText)) {
+      words[index] = highlight(word, searchText);
     }
-  }
+  });
   textElement.innerHTML = words.join(' ');
 };
 
