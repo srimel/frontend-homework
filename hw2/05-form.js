@@ -13,7 +13,8 @@ form.addEventListener('submit', (event) => {
         Name: ${data.get('name')}
         Email: ${data.get('email')}
         Registration Status: ${data.get('status')}
-        Previous Classes:`);
+  `);
+  progLang || opSys || fullStack ? console.log(`\tPrevious Classes:`) : null;
   progLang ? console.log(`\t\tProgramming Languages`) : null;
   opSys ? console.log(`\t\tOperating Systems`) : null;
   fullStack ? console.log(`\t\tFull Stack Web Development`) : null;
