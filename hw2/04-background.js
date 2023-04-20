@@ -23,7 +23,7 @@ const handlePageLoad = function handlePageLoad() {
 };
 
 const isValidInput = function isValidInput(input) {
-  if (input.length > 0) {
+  if (input.length > 0 && input !== '0') {
     if (!input.includes('-') && !input.includes('.')) {
       return true;
     }
