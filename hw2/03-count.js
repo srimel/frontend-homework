@@ -23,7 +23,7 @@ const findAndHighlight = function findAndHighlight(searchText) {
 
 const handleKeyDown = function handleKeyDown(event) {
   let searchText = event.target.value;
-  if (event.key.length === 1) {
+  if (event.key.length === 1 && event.ctrlKey === false) {
     searchText += event.key;
   } else if (event.key === 'Backspace') {
     searchText = searchText.slice(0, -1);
