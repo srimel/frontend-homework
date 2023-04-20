@@ -49,7 +49,7 @@ const transformButton = function transformButton(incomingAction) {
 const handleBackgroundCycle = function handleBackgroundCycle(event) {
   let action = event.target.value;
   transformButton(action);
-  if (action == 'Start') {
+  if (action === 'Start') {
     intervalInputElement.disabled = true;
     intervalID = setInterval(setRandomBackgroundColor, interval + '000');
   } else {
