@@ -17,7 +17,7 @@ const setRandomBackgroundColor = function setRandomBackgroundColor() {
   bodyElement[0].style.backgroundColor = getRandomColor();
 };
 
-const handlePageLoad = function handlePageLoad(event) {
+const handlePageLoad = function handlePageLoad() {
   setRandomBackgroundColor();
   buttonElement.disabled = true;
 };
@@ -47,7 +47,7 @@ const transformButton = function transformButton(incomingAction) {
 };
 
 const handleBackgroundCycle = function handleBackgroundCycle(event) {
-  let action = event.target.value;
+  const action = event.target.value;
   transformButton(action);
   if (action === 'Start') {
     intervalInputElement.disabled = true;

@@ -12,7 +12,7 @@ const highlight = function highlight(word, searchText) {
 };
 
 const findAndHighlight = function findAndHighlight(searchText) {
-  let words = originalInnerHTML.split(' ');
+  const words = originalInnerHTML.split(' ');
   for (i = 0; i < words.length; i++) {
     if (words[i].includes(searchText)) {
       words[i] = highlight(words[i], searchText);
