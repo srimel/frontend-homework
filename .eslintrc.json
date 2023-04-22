@@ -1,0 +1,12 @@
+{
+  "extends": "airbnb",
+  "rules": {
+	  "operator-linebreak": "off",
+	  "no-console": "off",
+	  "no-unused-expressions": "off"
+  },
+  "env": {
+	  "browser": true
+  }
+}
+
