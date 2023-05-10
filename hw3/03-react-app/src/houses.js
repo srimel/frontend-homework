@@ -114,10 +114,12 @@ export default function Houses() {
   };
 
   return (
-    <div>
-      <h1>House Counts</h1>
+    <div className="container">
       <div className="chart-box">
-        <canvas ref={donutChartRef} className="donut-chart" />
+        <h1>House Counts</h1>
+        <div>
+          <canvas ref={donutChartRef} className="donut-chart" />
+        </div>
       </div>
     </div>
   );
