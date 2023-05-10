@@ -53,10 +53,12 @@ export default function Search() {
           onChange={handleChange}
         />
       </form>
-      <div className="result">
-        <h3>{foundName}</h3>
-        <img src={foundImgage} alt={foundName} />
-      </div>
+      {foundName && (
+        <div className="result">
+          <h3>{foundName}</h3>
+          <img src={foundImgage} alt={foundName} />
+        </div>
+      )}
     </div>
   );
 }

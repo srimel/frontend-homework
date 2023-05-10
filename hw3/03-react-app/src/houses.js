@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import axios from 'axios';
 import { Chart, DoughnutController, ArcElement, Legend } from 'chart.js';
 import './houses.css';
@@ -49,7 +49,6 @@ export default function Houses() {
       try {
         const response = await axios.get(url);
         const data = response.data;
-        // handleResponseData(data);
         renderChart(data);
       } catch (error) {
         console.error('Request failed', error);
@@ -58,12 +57,6 @@ export default function Houses() {
 
     fetchData();
   }, []);
-
-  const handleResponseData = function handleResponseData(data) {
-    console.log('Response Data:', data);
-    const { houseNames, houseCounts } = getHouseNameCounts(data);
-    renderChart(houseNames, houseCounts);
-  };
 
   const getHouseNameCounts = function getHouseNameCountsFromData(data) {
     const familyCounts = {};
@@ -114,7 +107,7 @@ export default function Houses() {
   };
 
   return (
-    <div className="container-houses">
+    <div className="container-houses m-3">
       <div className="chart-box">
         <h1>House Counts</h1>
         <div>
