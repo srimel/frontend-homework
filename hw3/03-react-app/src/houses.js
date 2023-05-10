@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
-import { Chart, DoughnutController, ArcElement } from 'chart.js';
+import { Chart, DoughnutController, ArcElement, Legend } from 'chart.js';
+import './houses.css';
 
 const backgroundColors = [
   'rgba(54, 162, 235, 0.8)',
@@ -41,7 +42,6 @@ const getColors = (dataArray, colorArray) => {
 };
 
 export default function Houses() {
-  const [chartData, setChartData] = useState(null);
   const donutChartRef = useRef(null);
 
   useEffect(() => {
@@ -49,14 +49,15 @@ export default function Houses() {
       try {
         const response = await axios.get(url);
         const data = response.data;
-        handleResponseData(data);
+        // handleResponseData(data);
+        renderChart(data);
       } catch (error) {
         console.error('Request failed', error);
       }
     };
 
     fetchData();
-  });
+  }, []);
 
   const handleResponseData = function handleResponseData(data) {
     console.log('Response Data:', data);
@@ -81,31 +82,33 @@ export default function Houses() {
     };
   };
 
-  let chartInstance = null;
-
   // FIXME
-  const renderChart = function renderTheChart(houses, counts) {
+  const renderChart = function renderTheChart(data) {
+    const { houseNames, houseCounts } = getHouseNameCounts(data);
     const donutChart = donutChartRef.current.getContext('2d');
 
-    Chart.register(DoughnutController, ArcElement);
+    Chart.register(DoughnutController, ArcElement, Legend);
 
-    if (chartInstance) {
-      chartInstance.destroy();
-    }
-
-    chartInstance = new Chart(donutChart, {
+    new Chart(donutChart, {
       type: 'doughnut',
       data: {
-        labels: houses,
+        labels: houseNames,
         datasets: [
           {
             label: 'My First Dataset',
-            data: counts,
-            backgroundColor: getColors(houses, backgroundColors),
-            borderColor: getColors(houses, borderColors),
+            data: houseCounts,
+            backgroundColor: getColors(houseNames, backgroundColors),
+            borderColor: getColors(houseNames, borderColors),
             borderWidth: 1,
           },
         ],
+      },
+      options: {
+        plugins: {
+          legend: {
+            display: true,
+          },
+        },
       },
     });
   };
@@ -113,7 +116,7 @@ export default function Houses() {
   return (
     <div>
       <h1>House Counts</h1>
-      <div>
+      <div className="chart-box">
         <canvas ref={donutChartRef} className="donut-chart" />
       </div>
     </div>
