@@ -40,11 +40,14 @@ export default function Search() {
   }
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="search-input">Search</label>
+    <div className="container">
+      <form className="m-3" onSubmit={handleSubmit}>
+        <label className="form-label" htmlFor="search-input">
+          Search the full name of a Game of Thrones character:
+        </label>
         <input
           id="search-input"
+          className="form-control w-25 mx-auto"
           type="text"
           value={name}
           onChange={handleChange}

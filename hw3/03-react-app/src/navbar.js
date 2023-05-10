@@ -6,18 +6,24 @@ import Search from './search';
 export default function NavBar() {
   return (
     <div>
-      <nav>
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/search">Search</Link>
-          </li>
-          <li>
-            <Link to="/houses">Houses</Link>
-          </li>
-        </ul>
+      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+        <div className="container">
+          <Link to="/" className="navbar-brand">
+            Home
+          </Link>
+          <ul className="navbar-nav">
+            <li className="nav-item">
+              <Link to="/search" className="nav-link">
+                Search
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link to="/houses" className="nav-link">
+                Houses
+              </Link>
+            </li>
+          </ul>
+        </div>
       </nav>
       <Routes>
         <Route path="/" element={<Home />} />

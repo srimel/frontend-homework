@@ -114,7 +114,7 @@ export default function Houses() {
   };
 
   return (
-    <div className="container">
+    <div className="container-houses">
       <div className="chart-box">
         <h1>House Counts</h1>
         <div>
