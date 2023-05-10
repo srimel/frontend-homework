@@ -17,3 +17,23 @@ h1 {
   border-radius: 0.8rem;
   background-color: var(--white);
 }
+
+.characters {
+  padding: 20px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+  align-content: space-around;
+  gap: 20px;
+}
+
+.character {
+  text-align: center;
+  height: auto;
+  width: 225px;
+}
+
+.title {
+  font-weight: bold;
+  margin: 0px;
+}
