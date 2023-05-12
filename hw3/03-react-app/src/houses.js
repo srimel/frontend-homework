@@ -61,8 +61,7 @@ export default function Houses() {
   const getHouseNameCounts = function getHouseNameCountsFromData(data) {
     const familyCounts = {};
     data.forEach((obj) => {
-      let { family } = obj;
-      family = family || obj.lastName;
+      const family = getValidHouseName(obj);
       familyCounts[family] = familyCounts[family]
         ? familyCounts[family] + 1
         : 1;
@@ -75,7 +74,33 @@ export default function Houses() {
     };
   };
 
-  // FIXME
+  const getValidHouseName = function validateAPIData(obj) {
+    const { family, lastName } = obj;
+    let houseName = '';
+    if (family) {
+      if (family.toLowerCase().includes('house')) {
+        houseName = family.replace(/house\s*/i, '');
+      } else {
+        houseName = family;
+      }
+    } else if (lastName && lastName.trim() !== '') {
+      // reflex to use character's last name instead
+      houseName = lastName;
+    } else {
+      houseName = 'Unknown';
+    }
+    if (houseName.toLowerCase() === 'targaryan') {
+      houseName = 'Targaryen';
+    }
+    if (
+      houseName.toLowerCase() === 'unkown' ||
+      houseName.toLowerCase() === 'none'
+    ) {
+      houseName = 'Unknown';
+    }
+    return houseName.trim();
+  };
+
   const renderChart = function renderTheChart(data) {
     const { houseNames, houseCounts } = getHouseNameCounts(data);
     const donutChart = donutChartRef.current.getContext('2d');
