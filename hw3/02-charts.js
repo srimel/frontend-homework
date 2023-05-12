@@ -58,11 +58,30 @@ const renderChart = (houses, counts) => {
   });
 };
 
+const getValidHouseName = function validateAPIData(obj) {
+  const { family, lastName } = obj;
+  let houseName = '';
+  if (family) {
+    if (family.toLowerCase().includes('house')) {
+      houseName = family.replace(/house\s*/i, '');
+    } else {
+      houseName = family;
+    }
+  } else if (lastName && lastName.trim() !== '') {
+    houseName = lastName;
+  } else {
+    houseName = 'Unknown';
+  }
+  if (houseName.toLowerCase() === 'targaryan') {
+    houseName = 'Targaryen';
+  }
+  return houseName.trim();
+};
+
 const getHouseNameCounts = function getHouseNameCounts(data) {
   const familyCounts = {};
   data.forEach((obj) => {
-    let { family } = obj;
-    family = family || obj.lastName;
+    const family = getValidHouseName(obj);
     familyCounts[family] = familyCounts[family] ? familyCounts[family] + 1 : 1;
   });
   const houseNames = Object.keys(familyCounts);
