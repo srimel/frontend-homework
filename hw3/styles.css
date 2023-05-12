@@ -29,10 +29,15 @@ h1 {
 
 .character {
   text-align: center;
+  padding: 10px;
   height: auto;
-  width: 225px;
+  width: 250px;
 }
 
+.character:hover {
+  color: var(--white);
+  background-color: var(--blue);
+}
 .title {
   font-weight: bold;
   margin: 0px;
