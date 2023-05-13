@@ -3,7 +3,7 @@ import Houses from './houses';
 import Home from './home';
 import Search from './search';
 
-export default function NavBar() {
+export default function NavBar(props) {
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -27,8 +27,8 @@ export default function NavBar() {
       </nav>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/search" element={<Search />} />
-        <Route path="/houses" element={<Houses />} />
+        <Route path="/search" element={<Search characters={props.data} />} />
+        <Route path="/houses" element={<Houses characters={props.data} />} />
       </Routes>
     </div>
   );

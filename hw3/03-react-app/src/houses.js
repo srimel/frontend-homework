@@ -1,5 +1,4 @@
 import { useEffect, useRef } from 'react';
-import axios from 'axios';
 import { Chart, DoughnutController, ArcElement, Legend } from 'chart.js';
 import './houses.css';
 
@@ -31,8 +30,6 @@ const borderColors = [
   'rgba(78, 52, 199, 1)',
 ];
 
-const url = 'https://thronesapi.com/api/v2/Characters';
-
 const getColors = (dataArray, colorArray) => {
   const repeatedColors = [];
   dataArray.forEach((item, index) => {
@@ -41,22 +38,8 @@ const getColors = (dataArray, colorArray) => {
   return repeatedColors;
 };
 
-export default function Houses() {
+export default function Houses(props) {
   const donutChartRef = useRef(null);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(url);
-        const data = response.data;
-        renderChart(data);
-      } catch (error) {
-        console.error('Request failed', error);
-      }
-    };
-
-    fetchData();
-  }, []);
 
   const getHouseNameCounts = function getHouseNameCountsFromData(data) {
     const familyCounts = {};
@@ -101,35 +84,37 @@ export default function Houses() {
     return houseName.trim();
   };
 
-  const renderChart = function renderTheChart(data) {
-    const { houseNames, houseCounts } = getHouseNameCounts(data);
-    const donutChart = donutChartRef.current.getContext('2d');
-
-    Chart.register(DoughnutController, ArcElement, Legend);
-
-    new Chart(donutChart, {
-      type: 'doughnut',
-      data: {
-        labels: houseNames,
-        datasets: [
-          {
-            label: 'My First Dataset',
-            data: houseCounts,
-            backgroundColor: getColors(houseNames, backgroundColors),
-            borderColor: getColors(houseNames, borderColors),
-            borderWidth: 1,
-          },
-        ],
-      },
-      options: {
-        plugins: {
-          legend: {
-            display: true,
+  useEffect(() => {
+    const renderChart = function renderTheChart(data) {
+      const { houseNames, houseCounts } = getHouseNameCounts(data);
+      const donutChart = donutChartRef.current.getContext('2d');
+      Chart.register(DoughnutController, ArcElement, Legend);
+      new Chart(donutChart, {
+        type: 'doughnut',
+        data: {
+          labels: houseNames,
+          datasets: [
+            {
+              label: 'My First Dataset',
+              data: houseCounts,
+              backgroundColor: getColors(houseNames, backgroundColors),
+              borderColor: getColors(houseNames, borderColors),
+              borderWidth: 1,
+            },
+          ],
+        },
+        options: {
+          plugins: {
+            legend: {
+              display: true,
+            },
           },
         },
-      },
-    });
-  };
+      });
+    };
+
+    renderChart(props.characters);
+  }, [props.characters]);
 
   return (
     <div className="container-houses m-3">
