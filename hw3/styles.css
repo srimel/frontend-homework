@@ -7,13 +7,40 @@
 
 body {
   background-color: var(--cyan);
+  margin: 30px;
 }
 
 h1 {
   text-align: center;
+  margin-bottom: 20px;
 }
 
 .donut-chart {
   border-radius: 0.8rem;
   background-color: var(--white);
+}
+
+.characters {
+  padding: 20px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+  align-content: space-around;
+  gap: 20px;
+}
+
+.character {
+  text-align: center;
+  padding: 10px;
+  height: auto;
+  width: 250px;
+}
+
+.character:hover {
+  color: var(--white);
+  background-color: var(--blue);
+}
+.title {
+  font-weight: bold;
+  margin: 0px;
 }

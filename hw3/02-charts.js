@@ -29,19 +29,28 @@ const borderColors = [
 // url for the Thrones API
 const url = 'https://thronesapi.com/api/v2/Characters';
 
-const renderChart = () => {
+const getColors = function getRepeatedColors(dataArray, colorArray) {
+  const repeatedColors = [];
+  dataArray.forEach((item, index) => {
+    repeatedColors.push(colorArray[index % colorArray.length]);
+  });
+  return repeatedColors;
+};
+
+const renderChart = (houses, counts) => {
   const donutChart = document.querySelector('.donut-chart');
 
+  // eslint-disable-next-line no-new, no-undef
   new Chart(donutChart, {
     type: 'doughnut',
     data: {
-      labels: ['label', 'label', 'label', 'label'],
+      labels: houses,
       datasets: [
         {
           label: 'My First Dataset',
-          data: [1, 12, 33, 5],
-          backgroundColor: backgroundColors,
-          borderColor: borderColors,
+          data: counts,
+          backgroundColor: getColors(houses, backgroundColors),
+          borderColor: getColors(houses, borderColors),
           borderWidth: 1,
         },
       ],
@@ -49,4 +58,51 @@ const renderChart = () => {
   });
 };
 
-renderChart();
+const getValidHouseName = function validateAPIData(obj) {
+  const { family, lastName } = obj;
+  let houseName = '';
+  if (family) {
+    if (family.toLowerCase().includes('house')) {
+      houseName = family.replace(/house\s*/i, '');
+    } else {
+      houseName = family;
+    }
+  } else if (lastName && lastName.trim() !== '') {
+    houseName = lastName;
+  } else {
+    houseName = 'Unknown';
+  }
+  if (houseName.toLowerCase() === 'targaryan') {
+    houseName = 'Targaryen';
+  }
+  return houseName.trim();
+};
+
+const getHouseNameCounts = function getHouseNameCounts(data) {
+  const familyCounts = {};
+  data.forEach((obj) => {
+    const family = getValidHouseName(obj);
+    familyCounts[family] = familyCounts[family] ? familyCounts[family] + 1 : 1;
+  });
+  const houseNames = Object.keys(familyCounts);
+  const houseCounts = houseNames.map((house) => familyCounts[house]);
+  return {
+    houseNames,
+    houseCounts,
+  };
+};
+
+const handleResponseData = function handleJSONResponseData(data) {
+  console.log('Response Data: ', data);
+  const { houseNames, houseCounts } = getHouseNameCounts(data);
+  renderChart(houseNames, houseCounts); // parameterize for labels (houses) and data (counts)
+};
+
+fetch(url)
+  .then((response) => response.json())
+  .then((data) => {
+    handleResponseData(data);
+  })
+  .catch((error) => {
+    console.error('Failed to get response', error);
+  });
